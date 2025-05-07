@@ -39,6 +39,16 @@ jobs:
         sleep 5
         curl --fail http://localhost:8000 || exit 1
 
+    - name: 🐳 Build Docker Image
+      run: |
+        docker build -t churn-api .
+
+    - name: ✅ Test Docker Container
+      run: |
+        docker run -d -p 8000:8000 --name churn-test churn-api
+        sleep 5
+        curl --fail http://localhost:8000 || (docker logs churn-test && exit 1)
+
 
 
     # Deployment stage (to be added later)
