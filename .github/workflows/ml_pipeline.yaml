@@ -33,15 +33,8 @@ jobs:
     - name: 📊 Evaluate Model
       run: python src/evaluation/evaluate.py
 
-    - name: 🚀 Test FastAPI Deployment
-      run: |
-        python -m uvicorn src.deployment.deploy:app --host 0.0.0.0 --port 8000 &
-        sleep 5
-        curl --fail http://localhost:8000 || exit 1
-
     - name: 🐳 Build Docker Image
-      run: |
-        docker build -t churn-api .
+      run: docker build -t churn-api .
 
     - name: ✅ Test Docker Container
       run: |
