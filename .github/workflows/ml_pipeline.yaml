@@ -24,9 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: 📥 Data Ingestion
-      run: python src/ingestion/fetch_data.py
-
     - name: 🧹 Preprocess Data
       run: python src/preprocessing/process.py
 
