@@ -35,9 +35,10 @@ jobs:
 
     - name: 🚀 Test FastAPI Deployment
       run: |
-        uvicorn src.deployment.deploy:app --host 0.0.0.0 --port 8000 &
+        python -m uvicorn src.deployment.deploy:app --host 0.0.0.0 --port 8000 &
         sleep 5
         curl --fail http://localhost:8000 || exit 1
+
 
 
     # Deployment stage (to be added later)
